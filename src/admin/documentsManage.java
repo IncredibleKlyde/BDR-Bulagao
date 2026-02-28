@@ -201,6 +201,11 @@ public class documentsManage extends javax.swing.JFrame {
         request.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         request.setForeground(new java.awt.Color(255, 255, 255));
         request.setText("Request");
+        request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestMouseClicked(evt);
+            }
+        });
         requestPanel.add(request, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(requestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 170, -1));
@@ -650,6 +655,12 @@ public class documentsManage extends javax.swing.JFrame {
     private void refreshPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshPanelMouseExited
         refreshPanel.setBackground(navColor);
     }//GEN-LAST:event_refreshPanelMouseExited
+
+    private void requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseClicked
+        requestManage rm = new requestManage();
+        rm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_requestMouseClicked
 
     /**
      * @param args the command line arguments
