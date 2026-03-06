@@ -335,6 +335,11 @@ public class residentsManage extends javax.swing.JFrame {
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-add-20.png"))); // NOI18N
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
         addPanel.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 30));
 
         jPanel1.add(addPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, 40, 30));
@@ -548,56 +553,53 @@ public class residentsManage extends javax.swing.JFrame {
 
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this,
-                "Please select a user to edit.",
-                "Warning",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please select a resident to edit.");
             return;
         }
 
-        int id = Integer.parseInt(
-            residentsTable.getValueAt(selectedRow, 0).toString()
+        int residentId = Integer.parseInt(
+                residentsTable.getValueAt(selectedRow, 0).toString()
         );
 
-        String selectedUsername =
-        residentsTable.getValueAt(selectedRow, 2).toString();
-
         try {
+
             config.connectDB db = new config.connectDB();
             java.sql.Connection conn = db.getConnection();
 
-            String query = "SELECT first_name, middle_name, last_name, email, contact_number, role FROM users WHERE username = ?";
-            java.sql.PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, selectedUsername);
+            String sql = "SELECT * FROM residents WHERE resident_id = ?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, residentId);
 
-            java.sql.ResultSet rs = pstmt.executeQuery();
+            java.sql.ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
 
-                editUser updateForm = new editUser();
+                editResident editForm = new editResident();
 
-                updateForm.setUserData(
-                    id,
-                    rs.getString("first_name"),
-                    rs.getString("middle_name"),
-                    rs.getString("last_name"),
-                    rs.getString("email"),
-                    rs.getString("contact_number"),
-                    rs.getString("role"),
-                    selectedUsername
+                editForm.setResidentData(
+                        rs.getInt("resident_id"),
+                        rs.getString("first_name"),
+                        rs.getString("middle_name"),
+                        rs.getString("last_name"),
+                        rs.getString("birthdate"),
+                        rs.getString("gender"),
+                        rs.getString("civil_status"),
+                        rs.getString("contact_number"),
+                        rs.getString("address"),
+                        rs.getString("purok"),
+                        rs.getString("status")
                 );
 
-                updateForm.setVisible(true);
+                editForm.setVisible(true);
             }
 
             rs.close();
-            pstmt.close();
+            pst.close();
             conn.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
-                "Error: " + e.getMessage(),
-                "Database Error",
-                JOptionPane.ERROR_MESSAGE);
+                    "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_editPanelMouseClicked
 
@@ -666,6 +668,12 @@ public class residentsManage extends javax.swing.JFrame {
     private void refreshPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshPanelMouseExited
         refreshPanel.setBackground(navColor);
     }//GEN-LAST:event_refreshPanelMouseExited
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+       addResident add = new addResident();
+        setLocationRelativeTo(null);
+        add.setVisible(true);
+    }//GEN-LAST:event_addMouseClicked
 
     private int getSelectedResidentId() {
 

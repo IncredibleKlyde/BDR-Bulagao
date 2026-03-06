@@ -15,21 +15,19 @@ public class adminDashboard extends javax.swing.JFrame {
      * Creates new form adminDashboard
      */
     public adminDashboard() {
-    initComponents();
-     setLocationRelativeTo(null);
+        initComponents();
+        setLocationRelativeTo(null);
+       
         if (User.getInstance().getUserId() == 0) {
             JOptionPane.showMessageDialog(this, "Please login first.");
             new authentication.login().setVisible(true);
             this.dispose();
             return;
         }
-
         name.setText(User.getInstance().getUsername());
         brgyRoleInternal1.setText(User.getInstance().getRole());
         brgyrole.setText(User.getInstance().getRole());
     }
-    
-    
         Color hoverColor = new Color (255,0,51);
         Color navColor = new Color (255,102,51);
         
@@ -37,6 +35,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 this.dispose();        // close current window
                 frame.setVisible(true); // open new window
             }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,6 +131,11 @@ public class adminDashboard extends javax.swing.JFrame {
         profile.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
+        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMouseClicked(evt);
+            }
+        });
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 170, -1));
@@ -153,6 +157,11 @@ public class adminDashboard extends javax.swing.JFrame {
         residents.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         residents.setForeground(new java.awt.Color(255, 255, 255));
         residents.setText("Manage Residents");
+        residents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                residentsMouseClicked(evt);
+            }
+        });
         residentsPanel.add(residents, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 150, 40));
 
         jPanel2.add(residentsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 170, -1));
@@ -174,6 +183,11 @@ public class adminDashboard extends javax.swing.JFrame {
         request.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         request.setForeground(new java.awt.Color(255, 255, 255));
         request.setText("Request");
+        request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestMouseClicked(evt);
+            }
+        });
         requestPanel.add(request, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(requestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 170, -1));
@@ -195,6 +209,11 @@ public class adminDashboard extends javax.swing.JFrame {
         issuance.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         issuance.setForeground(new java.awt.Color(255, 255, 255));
         issuance.setText("Documents");
+        issuance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                issuanceMouseClicked(evt);
+            }
+        });
         issuancePanel.add(issuance, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(issuancePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 170, -1));
@@ -408,6 +427,26 @@ public class adminDashboard extends javax.swing.JFrame {
         new userManage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_users1MouseClicked
+
+    private void issuanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuanceMouseClicked
+        // TODO add your handling code here:
+        new documentsManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_issuanceMouseClicked
+
+    private void requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_requestMouseClicked
+
+    private void residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residentsMouseClicked
+      new residentsManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_residentsMouseClicked
+
+    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+       new adminProfile().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_profileMouseClicked
 
     /**
      * @param args the command line arguments

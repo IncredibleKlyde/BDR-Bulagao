@@ -5,19 +5,29 @@
  */
 package admin;
 
-/**
- *
- * @author axcee
- */
 public class editDocument extends javax.swing.JFrame {
-
+private int documentId;
     /**
      * Creates new form editDocument
      */
     public editDocument() {
         initComponents();
+        setLocationRelativeTo(null);
     }
+    public void setDocumentData(
+            int id,
+            String name,
+            double docFee,
+            String desc,
+            String status
+    ){
+        documentId = id;
 
+        documentName.setText(name);
+        fee.setText(String.valueOf(docFee));
+        description.setText(desc);
+        statusCombo.setSelectedItem(status);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +37,180 @@ public class editDocument extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel5 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
+        documentName = new javax.swing.JTextField();
+        fee = new javax.swing.JTextField();
+        welcome6 = new javax.swing.JLabel();
+        welcome8 = new javax.swing.JLabel();
+        welcome9 = new javax.swing.JLabel();
+        back_button = new javax.swing.JLabel();
+        welcome5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        description = new javax.swing.JTextArea();
+        submit = new javax.swing.JButton();
+        welcome10 = new javax.swing.JLabel();
+        statusCombo = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel6.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        documentName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentNameActionPerformed(evt);
+            }
+        });
+        jPanel6.add(documentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 200, 40));
+
+        fee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feeActionPerformed(evt);
+            }
+        });
+        jPanel6.add(fee, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 200, 40));
+
+        welcome6.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        welcome6.setForeground(new java.awt.Color(255, 255, 255));
+        welcome6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcome6.setText("Edit Document");
+        jPanel6.add(welcome6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 250, 60));
+
+        welcome8.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        welcome8.setText("Document Name");
+        jPanel6.add(welcome8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 180, 30));
+
+        welcome9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        welcome9.setText("Fee");
+        jPanel6.add(welcome9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 180, 30));
+
+        back_button.setBackground(new java.awt.Color(255, 255, 255));
+        back_button.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        back_button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        back_button.setText("<");
+        back_button.setOpaque(true);
+        back_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back_buttonMouseClicked(evt);
+            }
+        });
+        jPanel6.add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 50, 30));
+
+        welcome5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        welcome5.setText("Description");
+        jPanel6.add(welcome5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 180, 30));
+
+        description.setColumns(20);
+        description.setRows(5);
+        jScrollPane1.setViewportView(description);
+
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 350, 110));
+
+        submit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        submit.setText("Submit");
+        submit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
+        jPanel6.add(submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 130, 40));
+
+        welcome10.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        welcome10.setText("Status");
+        jPanel6.add(welcome10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 180, 30));
+
+        statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+        jPanel6.add(statusCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 200, 40));
+
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 700, 390));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void documentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_documentNameActionPerformed
+
+    private void feeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feeActionPerformed
+
+    private void back_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_buttonMouseClicked
+        documentsManage dm = new documentsManage();
+        dm.setVisible(true);
+        dm.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_back_buttonMouseClicked
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+
+        if(documentName.getText().isEmpty() || fee.getText().isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Document name and fee are required.");
+            return;
+        }
+
+        try {
+
+            String sql = "UPDATE documents SET document_name=?, fee=?, description=?, status=? WHERE document_id=?";
+
+            config.connectDB db = new config.connectDB();
+            java.sql.Connection conn = db.getConnection();
+
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, documentName.getText());
+            pst.setDouble(2, Double.parseDouble(fee.getText()));
+            pst.setString(3, description.getText());
+            pst.setString(4, statusCombo.getSelectedItem().toString());
+            pst.setInt(5, documentId);
+
+            pst.executeUpdate();
+
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Document updated successfully!");
+
+            pst.close();
+            conn.close();
+
+            documentsManage dm = new documentsManage();
+            dm.setVisible(true);
+            dm.setLocationRelativeTo(null);
+            this.dispose();
+
+        } catch(Exception e){
+
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error: " + e.getMessage());
+
+        }
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +248,18 @@ public class editDocument extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel back_button;
+    private javax.swing.JTextArea description;
+    private javax.swing.JTextField documentName;
+    private javax.swing.JTextField fee;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> statusCombo;
+    private javax.swing.JButton submit;
+    private javax.swing.JLabel welcome10;
+    private javax.swing.JLabel welcome5;
+    private javax.swing.JLabel welcome6;
+    private javax.swing.JLabel welcome8;
+    private javax.swing.JLabel welcome9;
     // End of variables declaration//GEN-END:variables
 }

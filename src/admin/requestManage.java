@@ -18,6 +18,7 @@ public class requestManage extends javax.swing.JFrame {
      */
     public requestManage() {
         initComponents();
+          setLocationRelativeTo(null);
         loadRequests();
     }
  private void openFrame(javax.swing.JFrame frame) {

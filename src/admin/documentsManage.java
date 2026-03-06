@@ -27,37 +27,46 @@ public class documentsManage extends javax.swing.JFrame {
                 frame.setVisible(true); // open new window
             }
             Color hoverColor = new Color (255,0,51);
-                Color navColor = new Color (255,102,51);
+            Color navColor = new Color (255,102,51);
 
-                private void loadDocuments() {
-            DefaultTableModel model =
-                (DefaultTableModel) documentsTable.getModel();
-            model.setRowCount(0);
+    private void loadDocuments() {
 
-            try {
-                config.connectDB db = new config.connectDB();
-                java.sql.Connection conn = db.getConnection();
+      DefaultTableModel model =
+              (DefaultTableModel) documentsTable.getModel();
+      model.setRowCount(0);
 
-                String sql = "SELECT document_id, document_name, fee FROM documents";
-                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-                java.sql.ResultSet rs = pst.executeQuery();
+      try {
 
-                while (rs.next()) {
-                    model.addRow(new Object[]{
-                        rs.getInt("document_id"),
-                        rs.getString("document_name"),
-                        rs.getDouble("fee")
-                    });
-                }
+          config.connectDB db = new config.connectDB();
+          java.sql.Connection conn = db.getConnection();
 
-                rs.close();
-                pst.close();
-                conn.close();
+          String sql = "SELECT document_id, document_name, fee, description, status FROM documents";
+          java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+          java.sql.ResultSet rs = pst.executeQuery();
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        }
+          while (rs.next()) {
+
+              model.addRow(new Object[]{
+                  rs.getInt("document_id"),
+                  rs.getString("document_name"),
+                  rs.getDouble("fee"),
+                  rs.getString("description"),
+                  rs.getString("status")
+              });
+
+          }
+
+          rs.close();
+          pst.close();
+          conn.close();
+
+      } catch (Exception e) {
+
+          JOptionPane.showMessageDialog(this,
+                  "Error loading documents: " + e.getMessage());
+
+      }
+  }          
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,6 +314,11 @@ public class documentsManage extends javax.swing.JFrame {
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-add-20.png"))); // NOI18N
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
         addPanel.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 30));
 
         jPanel1.add(addPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, 40, 30));
@@ -378,13 +392,13 @@ public class documentsManage extends javax.swing.JFrame {
 
         documentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Document Name", "Fee"
+                "ID", "Document Name", "Fee", "Description", "Status"
             }
         ));
         jScrollPane2.setViewportView(documentsTable);
@@ -513,10 +527,10 @@ public class documentsManage extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseExited
 
     private void addPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseClicked
-
-        createUser createForm = new createUser();
-        createForm.setLocationRelativeTo(this);
-        createForm.setVisible(true);
+        addDocument add = new addDocument();
+           add.setVisible(true);
+           add.setLocationRelativeTo(null);
+           this.dispose();
     }//GEN-LAST:event_addPanelMouseClicked
 
     private void addPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseEntered
@@ -533,7 +547,7 @@ public class documentsManage extends javax.swing.JFrame {
 
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this,
-                "Please select a user to edit.",
+                "Please select a document to edit.",
                 "Warning",
                 JOptionPane.WARNING_MESSAGE);
             return;
@@ -543,47 +557,27 @@ public class documentsManage extends javax.swing.JFrame {
             documentsTable.getValueAt(selectedRow, 0).toString()
         );
 
-        String selectedUsername =
-        documentsTable.getValueAt(selectedRow, 2).toString();
+        String name = documentsTable.getValueAt(selectedRow, 1).toString();
+        double fee = Double.parseDouble(
+            documentsTable.getValueAt(selectedRow, 2).toString()
+        );
+        String description = documentsTable.getValueAt(selectedRow, 3).toString();
+        String status = documentsTable.getValueAt(selectedRow, 4).toString();
 
-        try {
-            config.connectDB db = new config.connectDB();
-            java.sql.Connection conn = db.getConnection();
+        editDocument editForm = new editDocument();
 
-            String query = "SELECT first_name, middle_name, last_name, email, contact_number, role FROM users WHERE username = ?";
-            java.sql.PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, selectedUsername);
+        editForm.setDocumentData(
+            id,
+            name,
+            fee,
+            description,
+            status
+        );
 
-            java.sql.ResultSet rs = pstmt.executeQuery();
+        editForm.setVisible(true);
+        editForm.setLocationRelativeTo(null);
 
-            if (rs.next()) {
-
-                editUser updateForm = new editUser();
-
-                updateForm.setUserData(
-                    id,
-                    rs.getString("first_name"),
-                    rs.getString("middle_name"),
-                    rs.getString("last_name"),
-                    rs.getString("email"),
-                    rs.getString("contact_number"),
-                    rs.getString("role"),
-                    selectedUsername
-                );
-
-                updateForm.setVisible(true);
-            }
-
-            rs.close();
-            pstmt.close();
-            conn.close();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                "Error: " + e.getMessage(),
-                "Database Error",
-                JOptionPane.ERROR_MESSAGE);
-        }
+        this.dispose();
     }//GEN-LAST:event_editPanelMouseClicked
 
     private void editPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPanelMouseEntered
@@ -645,7 +639,7 @@ public class documentsManage extends javax.swing.JFrame {
     }//GEN-LAST:event_deletePanelMouseExited
 
     private void refreshPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshPanelMouseClicked
-       
+           loadDocuments();
     }//GEN-LAST:event_refreshPanelMouseClicked
 
     private void refreshPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshPanelMouseEntered
@@ -661,6 +655,13 @@ public class documentsManage extends javax.swing.JFrame {
         rm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_requestMouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        addDocument add = new addDocument();
+        add.setVisible(true);
+        add.setLocationRelativeTo(null);
+       
+    }//GEN-LAST:event_addMouseClicked
 
     /**
      * @param args the command line arguments
