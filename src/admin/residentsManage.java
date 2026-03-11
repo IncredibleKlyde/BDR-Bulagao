@@ -110,8 +110,6 @@ public class residentsManage extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         residentsTable = new javax.swing.JTable();
-        addPanel = new javax.swing.JPanel();
-        add = new javax.swing.JLabel();
         editPanel = new javax.swing.JPanel();
         edit = new javax.swing.JLabel();
         deletePanel = new javax.swing.JPanel();
@@ -285,6 +283,11 @@ public class residentsManage extends javax.swing.JFrame {
         users1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         users1.setForeground(new java.awt.Color(255, 255, 255));
         users1.setText("Manage Users");
+        users1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                users1MouseClicked(evt);
+            }
+        });
         userPanel.add(users1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(userPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 170, -1));
@@ -315,34 +318,7 @@ public class residentsManage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(residentsTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 710, 330));
-
-        addPanel.setBackground(new java.awt.Color(255, 102, 51));
-        addPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addPanelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addPanelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addPanelMouseExited(evt);
-            }
-        });
-        addPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        add.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        add.setForeground(new java.awt.Color(255, 255, 255));
-        add.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-add-20.png"))); // NOI18N
-        add.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addMouseClicked(evt);
-            }
-        });
-        addPanel.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 30));
-
-        jPanel1.add(addPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, 40, 30));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 730, 330));
 
         editPanel.setBackground(new java.awt.Color(255, 102, 51));
         editPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -525,27 +501,12 @@ public class residentsManage extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseClicked
 
     private void userPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseEntered
-            openFrame(new userManage());
+            
     }//GEN-LAST:event_userPanelMouseEntered
 
     private void userPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseExited
-         openFrame(new userManage());
+         
     }//GEN-LAST:event_userPanelMouseExited
-
-    private void addPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseClicked
-
-        createUser createForm = new createUser();
-        createForm.setLocationRelativeTo(this);
-        createForm.setVisible(true);
-    }//GEN-LAST:event_addPanelMouseClicked
-
-    private void addPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseEntered
-        addPanel.setBackground(hoverColor);
-    }//GEN-LAST:event_addPanelMouseEntered
-
-    private void addPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseExited
-        addPanel.setBackground(navColor);
-    }//GEN-LAST:event_addPanelMouseExited
 
     private void editPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPanelMouseClicked
 
@@ -669,11 +630,10 @@ public class residentsManage extends javax.swing.JFrame {
         refreshPanel.setBackground(navColor);
     }//GEN-LAST:event_refreshPanelMouseExited
 
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-       addResident add = new addResident();
-        setLocationRelativeTo(null);
-        add.setVisible(true);
-    }//GEN-LAST:event_addMouseClicked
+    private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
+        new userManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_users1MouseClicked
 
     private int getSelectedResidentId() {
 
@@ -725,8 +685,6 @@ public class residentsManage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel add;
-    private javax.swing.JPanel addPanel;
     private javax.swing.JPanel dashPanel;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel delete;

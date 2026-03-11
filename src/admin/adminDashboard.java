@@ -420,7 +420,7 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseExited
 
     private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
-         // TODO add your handling code here:
+         openFrame(new userManage());
         
     }//GEN-LAST:event_users1MouseClicked
 

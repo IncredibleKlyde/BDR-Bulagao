@@ -279,6 +279,11 @@ public class documentsManage extends javax.swing.JFrame {
         users1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         users1.setForeground(new java.awt.Color(255, 255, 255));
         users1.setText("Manage Users");
+        users1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                users1MouseClicked(evt);
+            }
+        });
         userPanel.add(users1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(userPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 170, -1));
@@ -519,11 +524,11 @@ public class documentsManage extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseClicked
 
     private void userPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseEntered
-          openFrame(new userManage());
+          
     }//GEN-LAST:event_userPanelMouseEntered
 
     private void userPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseExited
-       openFrame(new userManage());
+       
     }//GEN-LAST:event_userPanelMouseExited
 
     private void addPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPanelMouseClicked
@@ -662,6 +667,11 @@ public class documentsManage extends javax.swing.JFrame {
         add.setLocationRelativeTo(null);
        
     }//GEN-LAST:event_addMouseClicked
+
+    private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
+        new userManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_users1MouseClicked
 
     /**
      * @param args the command line arguments

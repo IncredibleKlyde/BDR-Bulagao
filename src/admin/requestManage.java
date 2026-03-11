@@ -279,6 +279,11 @@ public class requestManage extends javax.swing.JFrame {
         residents.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         residents.setForeground(new java.awt.Color(255, 255, 255));
         residents.setText("Manage Residents");
+        residents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                residentsMouseClicked(evt);
+            }
+        });
         residentsPanel.add(residents, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 150, 40));
 
         jPanel2.add(residentsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 170, -1));
@@ -364,6 +369,11 @@ public class requestManage extends javax.swing.JFrame {
         users1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         users1.setForeground(new java.awt.Color(255, 255, 255));
         users1.setText("Manage Users");
+        users1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                users1MouseClicked(evt);
+            }
+        });
         userPanel.add(users1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(userPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 170, -1));
@@ -526,11 +536,11 @@ public class requestManage extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseClicked
 
     private void userPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseEntered
-        openFrame(new userManage());
+        
     }//GEN-LAST:event_userPanelMouseEntered
 
     private void userPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseExited
-        openFrame(new userManage());
+        
     }//GEN-LAST:event_userPanelMouseExited
 
     private void approveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveActionPerformed
@@ -650,6 +660,15 @@ public class requestManage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, e.getMessage());
     }
     }//GEN-LAST:event_rejectActionPerformed
+
+    private void residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residentsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_residentsMouseClicked
+
+    private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
+        new userManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_users1MouseClicked
 
     /**
      * @param args the command line arguments

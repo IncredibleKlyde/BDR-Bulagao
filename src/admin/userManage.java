@@ -131,6 +131,11 @@ public class userManage extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -164,6 +169,11 @@ public class userManage extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
         dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
         dashPanel.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(dashPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 170, -1));
@@ -185,6 +195,11 @@ public class userManage extends javax.swing.JFrame {
         profile.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
+        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMouseClicked(evt);
+            }
+        });
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 170, -1));
@@ -206,6 +221,11 @@ public class userManage extends javax.swing.JFrame {
         residents.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         residents.setForeground(new java.awt.Color(255, 255, 255));
         residents.setText("Manage Residents");
+        residents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                residentsMouseClicked(evt);
+            }
+        });
         residentsPanel.add(residents, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 150, 40));
 
         jPanel2.add(residentsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 170, -1));
@@ -227,6 +247,11 @@ public class userManage extends javax.swing.JFrame {
         request.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         request.setForeground(new java.awt.Color(255, 255, 255));
         request.setText("Request");
+        request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestMouseClicked(evt);
+            }
+        });
         requestPanel.add(request, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(requestPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 170, -1));
@@ -248,6 +273,11 @@ public class userManage extends javax.swing.JFrame {
         issuance.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         issuance.setForeground(new java.awt.Color(255, 255, 255));
         issuance.setText("Documents");
+        issuance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                issuanceMouseClicked(evt);
+            }
+        });
         issuancePanel.add(issuance, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 130, 40));
 
         jPanel2.add(issuancePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 170, -1));
@@ -742,6 +772,34 @@ public class userManage extends javax.swing.JFrame {
     private void activatePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activatePanelMouseExited
         activatePanel.setBackground(navColor);
     }//GEN-LAST:event_activatePanelMouseExited
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+        new adminProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileMouseClicked
+
+    private void residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residentsMouseClicked
+        new residentsManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_residentsMouseClicked
+
+    private void requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseClicked
+        new requestManage().setVisible(true);
+    }//GEN-LAST:event_requestMouseClicked
+
+    private void issuanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuanceMouseClicked
+        new documentsManage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_issuanceMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        new adminDashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_dashboardMouseClicked
 private int getSelectedUserId() {
 
     int selectedRow = usersTable.getSelectedRow();
