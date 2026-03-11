@@ -421,8 +421,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
          // TODO add your handling code here:
-        new userManage().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_users1MouseClicked
 
     private void issuanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issuanceMouseClicked
@@ -446,7 +445,8 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_profileMouseClicked
 
     private void userPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseClicked
-        // TODO add your handling code here:
+        new userManage().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_userPanelMouseClicked
 
     /**
