@@ -411,9 +411,6 @@ public class adminDashboard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_logoutPanelMouseExited
 
-    private void userPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseClicked
-    }//GEN-LAST:event_userPanelMouseClicked
-
     private void userPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_userPanelMouseEntered
@@ -423,7 +420,7 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_userPanelMouseExited
 
     private void users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_users1MouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         new userManage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_users1MouseClicked
@@ -435,18 +432,22 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_issuanceMouseClicked
 
     private void requestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseClicked
-        // TODO add your handling code here:
+        new requestManage().setVisible(true);
     }//GEN-LAST:event_requestMouseClicked
 
     private void residentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residentsMouseClicked
-      new residentsManage().setVisible(true);
+        new residentsManage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_residentsMouseClicked
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-       new adminProfile().setVisible(true);
-       this.dispose();
+        new adminProfile().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_profileMouseClicked
+
+    private void userPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userPanelMouseClicked
 
     /**
      * @param args the command line arguments
