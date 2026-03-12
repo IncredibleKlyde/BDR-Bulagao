@@ -197,6 +197,7 @@ public class requestManage extends javax.swing.JFrame {
         requestsTable = new javax.swing.JTable();
         approve = new javax.swing.JButton();
         reject = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -421,6 +422,14 @@ public class requestManage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(reject, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 90, -1));
+
+        jButton1.setText("Print Certificate (Approved only)");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -670,6 +679,31 @@ public class requestManage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_users1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         int selectedRow = requestsTable.getSelectedRow();
+
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a request first.");
+        return;
+    }
+
+    String status = requestsTable.getValueAt(selectedRow, 4).toString();
+    if (!status.equalsIgnoreCase("Approved")) {
+        JOptionPane.showMessageDialog(this, "Only approved requests can be printed.");
+        return;
+    }
+
+    String documentType = requestsTable.getValueAt(selectedRow, 2).toString();
+
+    if (documentType.equalsIgnoreCase("Barangay Clearance")) {
+        new BarangayClearance().setVisible(true);
+    } else if (documentType.equalsIgnoreCase("Barangay Business Clearance")) {
+        new BarangayBusinessClearance().setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "No print form available for: " + documentType);
+    }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -711,6 +745,7 @@ public class requestManage extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel issuance;
     private javax.swing.JPanel issuancePanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
